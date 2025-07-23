@@ -9,8 +9,7 @@
 - 支持低延迟播放，累积延迟消除
 
 ## 前提
-你的Expo项目应该是使用持续的原生生成 (CNG)
-https://docs.expo.dev/workflow/continuous-native-generation/
+你的Expo项目应该是使用持续的原生生成 [(CNG)](https://docs.expo.dev/workflow/continuous-native-generation/)  
 如果不是请先执行
 ```bash
 npx expo prebuild
