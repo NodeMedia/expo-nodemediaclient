@@ -18,15 +18,17 @@
   "keywords": [
     "react-native",
     "expo",
-    "expo-nodemediaclient",
-    "ExpoNodemediaclient"
+    "nodemediaclient",
+    "RTMP",
+    "RTSP",
+    "NodePlayer"
   ],
   "repository": "https://github.com/NodeMedia/expo-nodemediaclient",
   "bugs": {
     "url": "https://github.com/NodeMedia/expo-nodemediaclient/issues"
   },
   "author": "Chen Mingliang <illuspas@msn.com> (illuspas)",
-  "license": "",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/NodeMedia/expo-nodemediaclient#readme",
   "dependencies": {},
   "devDependencies": {
