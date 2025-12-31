@@ -3,13 +3,15 @@
   "apple": {
     "modules": [
       "ExpoNodeMediaClientModule",
-      "ExpoNodePlayerModule"
+      "ExpoNodePlayerViewModule",
+      "ExpoNodePublisherViewModule"
     ]
   },
   "android": {
     "modules": [
       "expo.modules.nodemediaclient.ExpoNodeMediaClientModule",
-      "expo.modules.nodemediaclient.ExpoNodePlayerModule"
+      "expo.modules.nodemediaclient.ExpoNodePlayerViewModule",
+      "expo.modules.nodemediaclient.ExpoNodePublisherViewModule"
     ]
   }
 }

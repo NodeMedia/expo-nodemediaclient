@@ -6,7 +6,7 @@
 
 import ExpoModulesCore
 
-public class ExpoNodePlayerModule: Module {
+public class ExpoNodePlayerViewModule: Module {
   // Each module class must implement the definition function. The definition consists of components
   // that describes the module's functionality and behavior.
   // See https://docs.expo.dev/modules/module-api for more details about available components.
@@ -17,6 +17,8 @@ public class ExpoNodePlayerModule: Module {
     Name("ExpoNodePlayerView")
 
     View(ExpoNodePlayerView.self) {
+      Events("onEventCallback")
+
       Prop("url") { (view, url: String) in
         view.url = url
       }
@@ -26,10 +28,10 @@ public class ExpoNodePlayerModule: Module {
       Prop("croptyKey") { (view, key: String) in
         view.croptyKey = key
       }
-      Prop("scaleMode") { (view, mode: UInt) in
+      Prop("scaleMode") { (view, mode: Int) in
         view.scaleMode = mode
       }
-      Prop("bufferTime") { (view, time: UInt) in
+      Prop("bufferTime") { (view, time: Int) in
         view.bufferTime = time
       }
       Prop("HTTPReferer") { (view, referer: String) in
@@ -44,11 +46,11 @@ public class ExpoNodePlayerModule: Module {
       Prop("HWAccelEnable") { (view, enable: Bool) in
         view.HWAccelEnable = enable
       }
-      
+
       AsyncFunction("start") { (view: ExpoNodePlayerView, url: String?) in
         view.start(u:url)
       }
-      
+
       AsyncFunction("stop") { (view: ExpoNodePlayerView) in
         view.stop()
       }

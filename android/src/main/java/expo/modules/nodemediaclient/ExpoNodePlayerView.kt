@@ -1,30 +1,22 @@
-//
-//  Copyright (c) 2025 NodeMedia Technology Co., Ltd.
-//  Created by Chen Mingliang on 2025-07-22.
-//  All rights reserved.
-//
-
 package expo.modules.nodemediaclient
 
 import android.content.Context
-import android.util.Log
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.FrameLayout
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.viewevent.EventDispatcher
 import expo.modules.kotlin.views.ExpoView
-import cn.nodemedia.NodePlayer;
+
+import android.util.Log
+import android.widget.FrameLayout
+import cn.nodemedia.NodePlayer
 
 class ExpoNodePlayerView(context: Context, appContext: AppContext) : ExpoView(context, appContext) {
-    // Creates and initializes an event dispatcher for the `onLoad` event.
-    // The name of the event is inferred from the value and needs to match the event name defined in the module.
-    private val onLoad by EventDispatcher()
     private val TAG = "ExpoNodePlayerView"
     private var np: NodePlayer? = null
+    private val onEventCallback by EventDispatcher()
+
     var url = ""
     var cryptoKey = "" // Add this property
-        set(value)  {
+        set(value) {
             field = value
             np?.setCryptoKey(value)
         }
@@ -60,7 +52,7 @@ class ExpoNodePlayerView(context: Context, appContext: AppContext) : ExpoView(co
             np?.setRTSPTransport(value)
         }
 
-    var HWAccelEnable= true
+    var HWAccelEnable = true
         set(value) {
             field = value
             np?.setHWAccelEnable(value)
@@ -76,6 +68,9 @@ class ExpoNodePlayerView(context: Context, appContext: AppContext) : ExpoView(co
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         np = NodePlayer(context, LICENSE_KEY)
+        np?.setOnNodePlayerEventListener { obj, event, msg ->
+            onEventCallback(mapOf("event" to event, "msg" to msg))
+        }
         np?.attachView(videoView)
     }
 
@@ -86,8 +81,8 @@ class ExpoNodePlayerView(context: Context, appContext: AppContext) : ExpoView(co
         super.onDetachedFromWindow()
     }
 
-    fun start(url: String?){
-        if(!url.isNullOrEmpty()) {
+    fun start(url: String?) {
+        if (!url.isNullOrEmpty()) {
             this.url = url
         }
         np?.setVolume(this.volume)
@@ -101,7 +96,7 @@ class ExpoNodePlayerView(context: Context, appContext: AppContext) : ExpoView(co
         np?.start(this.url)
     }
 
-    fun stop(){
+    fun stop() {
         np?.stop()
     }
 }

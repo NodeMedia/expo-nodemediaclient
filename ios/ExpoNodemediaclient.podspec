@@ -14,13 +14,12 @@ Pod::Spec.new do |s|
     :ios => '15.1',
     :tvos => '15.1'
   }
-  s.swift_version  = '5.4'
+  s.swift_version  = '5.9'
   s.source         = { git: 'https://github.com/NodeMedia/expo-nodemediaclient' }
   s.static_framework = true
 
   s.dependency 'ExpoModulesCore'
-  s.dependency 'NodeMediaClient', '~> 3.2.10'
-
+  s.dependency 'NodeMediaClient', '~> 4.0.12'
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {
     'DEFINES_MODULE' => 'YES',

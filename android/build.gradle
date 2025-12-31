@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 
 group = 'expo.modules.nodemediaclient'
-version = '0.1.1'
 
 def expoModulesCorePlugin = new File(project(":expo-modules-core").projectDir.absolutePath, "ExpoModulesCorePlugin.gradle")
 apply from: expoModulesCorePlugin
@@ -23,10 +22,10 @@ if (useManagedAndroidSdkVersions) {
     }
   }
   project.android {
-    compileSdkVersion safeExtGet("compileSdkVersion", 34)
+    compileSdkVersion safeExtGet("compileSdkVersion", 36)
     defaultConfig {
-      minSdkVersion safeExtGet("minSdkVersion", 21)
-      targetSdkVersion safeExtGet("targetSdkVersion", 34)
+      minSdkVersion safeExtGet("minSdkVersion", 24)
+      targetSdkVersion safeExtGet("targetSdkVersion", 36)
     }
   }
 }
@@ -41,6 +40,6 @@ android {
     abortOnError false
   }
   dependencies {
-    implementation 'com.github.NodeMedia:NodeMediaClient-Android:3.2.12'
+    implementation 'com.github.NodeMedia:NodeMediaClient-Android:4.0.11'
   }
 }
