@@ -166,4 +166,8 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
     fun setEffectStyle(style: Int) {
         np?.setEffectStyle(style)
     }
+
+    fun startFocusAndMeteringCenter() {
+        np?.startFocusAndMeteringCenter()
+    }
 }

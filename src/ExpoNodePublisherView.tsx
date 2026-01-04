@@ -5,8 +5,9 @@ import { requireNativeViewManager } from 'expo-modules-core';
 export type NodePublisherRef = {
   start: (url?: string) => Promise<void>;
   stop: () => Promise<void>;
-  setEffectParameter: (key: string, value: number) => void;
-  setEffectStyle: (style: number) => void;
+  setEffectParameter: (key: string, value: number) => Promise<void>;
+  setEffectStyle: (style: number) => Promise<void>;
+  startFocusAndMeteringCenter:() => Promise<void>;
 }
 
 export type NodePublisherEventCallback = {

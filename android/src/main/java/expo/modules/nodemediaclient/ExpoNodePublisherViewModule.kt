@@ -61,12 +61,12 @@ class ExpoNodePublisherViewModule : Module() {
                 view.denoiseEnable = denoiseEnable
             }
 
-            Prop("roomRatio") { view: ExpoNodePublisherView, roomRatio: Double ->
-                view.roomRatio = roomRatio.toFloat()
+            Prop("roomRatio") { view: ExpoNodePublisherView, roomRatio: Float ->
+                view.roomRatio = roomRatio
             }
 
-            Prop("volume") { view: ExpoNodePublisherView, volume: Double ->
-                view.volume = volume.toFloat()
+            Prop("volume") { view: ExpoNodePublisherView, volume: Float ->
+                view.volume = volume
             }
 
             Prop("torchEnable") { view: ExpoNodePublisherView, torchEnable: Boolean ->
@@ -78,12 +78,12 @@ class ExpoNodePublisherViewModule : Module() {
                 view.colorStyleId = colorStyleId
             }
 
-            Prop("colorStyleIntensity") { view: ExpoNodePublisherView, colorStyleIntensity: Double ->
-                view.colorStyleIntensity = colorStyleIntensity.toFloat()
+            Prop("colorStyleIntensity") { view: ExpoNodePublisherView, colorStyleIntensity: Float ->
+                view.colorStyleIntensity = colorStyleIntensity
             }
 
-            Prop("smoothskinIntensity") { view: ExpoNodePublisherView, smoothskinIntensity: Double ->
-                view.smoothskinIntensity = smoothskinIntensity.toFloat()
+            Prop("smoothskinIntensity") { view: ExpoNodePublisherView, smoothskinIntensity: Float ->
+                view.smoothskinIntensity = smoothskinIntensity
             }
 
             // Methods
@@ -101,6 +101,10 @@ class ExpoNodePublisherViewModule : Module() {
 
             AsyncFunction("setEffectStyle") { view: ExpoNodePublisherView, style: Int ->
                 view.setEffectStyle(style)
+            }
+
+            AsyncFunction("startFocusAndMeteringCenter") { view: ExpoNodePublisherView ->
+                view.startFocusAndMeteringCenter()
             }
         }
     }

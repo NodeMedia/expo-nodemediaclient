@@ -132,6 +132,7 @@ export function PublisherScreen({
         <NodePublisher
           ref={publisherRef}
           style={styles.publisherView}
+          onTouchStart={() => publisherRef.current?.startFocusAndMeteringCenter()}
           url={url}
           volume={muted ? 0 : 1}
           audioParam={{
