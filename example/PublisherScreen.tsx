@@ -49,10 +49,10 @@ export function PublisherScreen({
   const [showLogs, setShowLogs] = useState(false);
   const [muted, setMuted] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
-  const [roomRatio, setRoomRatio] = useState(1.0);
+  const [roomRatio, setRoomRatio] = useState(0.0);
   const scrollViewRef = useRef<ScrollView>(null);
   const pinchDistanceRef = useRef<number | null>(null);
-  const initialRoomRatioRef = useRef(1.0);
+  const initialRoomRatioRef = useRef(0.0);
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -140,6 +140,7 @@ export function PublisherScreen({
       const currentDistance = calculateDistance(e.nativeEvent.touches);
       const scale = currentDistance / pinchDistanceRef.current;
       const newRatio = Math.max(1.0, Math.min(5.0, initialRoomRatioRef.current * scale));
+      console.log('Room ratio:', newRatio);
       setRoomRatio(newRatio);
     }
   };

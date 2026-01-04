@@ -63,33 +63,35 @@ class ExpoNodePublisherView: ExpoView, NodePublisherDelegate {
     
     var frontCamera: Bool? {
         didSet {
-            if let fc = frontCamera {
+            if let fc = frontCamera, oldValue != frontCamera {
                 _np?.closeCamera()
                 _np?.openCamera(fc)
             }
         }
     }
     
-    var roomRatio: Float? {
+    var roomRatio: Float = 0.0{
         didSet {
-            if let ratio = roomRatio {
-                _np?.setRoomRatio(ratio)
-            }
+            _np?.roomRatio = roomRatio
         }
     }
     
-    var torchEnable: Bool? {
+    var torchEnable: Bool = false {
         didSet {
-            if let torch = torchEnable {
-                _np?.enableTorch(torch)
-            }
+            _np?.torchEnable = torchEnable
         }
     }
-    
+
+    var volume: Float = 1.0 {
+        didSet {
+            _np?.volume = volume
+        }
+    }
+
     required init(appContext: AppContext? = nil) {
         super.init(appContext: appContext)
     }
-    
+
     override func didMoveToWindow() {
         super.didMoveToWindow()
         if window != nil {
@@ -104,6 +106,8 @@ class ExpoNodePublisherView: ExpoView, NodePublisherDelegate {
             _np?.cryptoKey = cryptoKey
             _np?.hwAccelEnable = HWAccelEnable
             _np?.denoiseEnable = denoiseEnable
+            _np?.torchEnable = torchEnable
+            _np?.volume = volume
             _np?.openCamera(frontCamera == true)
             _np?.attach(self)
 
@@ -152,6 +156,10 @@ class ExpoNodePublisherView: ExpoView, NodePublisherDelegate {
     
     func setEffectStyle(style: Int) {
         _np?.setEffectStyleWithId(style)
+    }
+    
+    func startFocusAndMeteringCenter() {
+        _np?.startFocusAndMeteringCenter()
     }
 
     // MARK: - NodePublisherDelegate
