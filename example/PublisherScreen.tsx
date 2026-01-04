@@ -40,7 +40,7 @@ export function PublisherScreen({
 
   const [url, setUrl] = useState('rtmp://192.168.0.2/live/stream');
   const [isPublishing, setIsPublishing] = useState(false);
-  const [frontCamera, setFrontCamera] = useState(false);
+  const [frontCamera, setFrontCamera] = useState(true);
   const [colorStyleOn, setColorStyleOn] = useState(false);
   const [smoothskinOn, setSmoothskinOn] = useState(false);
   const [colorStyleIntensity, setColorStyleIntensity] = useState(0.0);
@@ -49,6 +49,7 @@ export function PublisherScreen({
   const [showLogs, setShowLogs] = useState(false);
   const [muted, setMuted] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
+  const [zoomRatio, setZoomRatio] = useState(0.0);
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
@@ -156,6 +157,7 @@ export function PublisherScreen({
           torchEnable={torchOn}
           HWAccelEnable={true}
           denoiseEnable={true}
+          zoomRatio={zoomRatio}
           colorStyleId={NodePublisher.EFFECTOR_STYLE_ID_FAIRSKIN}
           colorStyleIntensity={colorStyleIntensity}
           smoothskinIntensity={smoothskinIntensity}

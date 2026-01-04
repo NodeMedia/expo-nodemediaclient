@@ -60,8 +60,8 @@ public class ExpoNodePublisherViewModule: Module {
                 view.cameraFrontMirror = mirror
             }
             
-            Prop("roomRatio") { (view, ratio: Float) in
-                view.roomRatio = ratio
+            Prop("zoomRatio") { (view, ratio: Float) in
+                view.zoomRatio = ratio
             }
             
             Prop("torchEnable") { (view, enable: Bool) in

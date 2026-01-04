@@ -61,8 +61,8 @@ class ExpoNodePublisherViewModule : Module() {
                 view.denoiseEnable = denoiseEnable
             }
 
-            Prop("roomRatio") { view: ExpoNodePublisherView, roomRatio: Float ->
-                view.roomRatio = roomRatio
+            Prop("zoomRatio") { view: ExpoNodePublisherView, zoomRatio: Float ->
+                view.zoomRatio = zoomRatio
             }
 
             Prop("volume") { view: ExpoNodePublisherView, volume: Float ->

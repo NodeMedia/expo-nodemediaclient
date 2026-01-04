@@ -19,10 +19,10 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
     var HWAccelEnable = true
     var denoiseEnable = true
 
-    var roomRatio: Float? = null
+    var zoomRatio: Float? = null
         set(value) {
             field = value
-            value?.let { np?.setRoomRatio(it) }
+            value?.let { np?.setZoomRatio(it) }
         }
 
     var volume: Float? = null
@@ -34,7 +34,7 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
     var torchEnable: Boolean? = null
         set(value) {
             field = value
-            value?.let { np?.enableTorch(it) }
+            value?.let { np?.setTorchEnable(it) }
         }
 
     // Color and effect parameters
@@ -125,7 +125,7 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
         np?.openCamera(if (frontCamera == true) 0 else 1)
         np?.attachView(videoView)
 
-        np?.setRoomRatio(roomRatio ?: 1f)
+        np?.setZoomRatio(zoomRatio ?: 1f)
     }
 
     override fun onDetachedFromWindow() {

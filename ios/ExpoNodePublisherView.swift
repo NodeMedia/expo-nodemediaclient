@@ -70,9 +70,9 @@ class ExpoNodePublisherView: ExpoView, NodePublisherDelegate {
         }
     }
     
-    var roomRatio: Float = 0.0{
+    var zoomRatio: Float = 0.0{
         didSet {
-            _np?.roomRatio = roomRatio
+            _np?.zoomRatio = zoomRatio
         }
     }
     
