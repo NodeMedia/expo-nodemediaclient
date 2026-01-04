@@ -124,6 +124,8 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
         // opencamera and attachview
         np?.openCamera(if (frontCamera == true) 0 else 1)
         np?.attachView(videoView)
+
+        np?.setRoomRatio(roomRatio ?: 1f)
     }
 
     override fun onDetachedFromWindow() {

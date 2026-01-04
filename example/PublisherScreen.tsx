@@ -49,7 +49,10 @@ export function PublisherScreen({
   const [showLogs, setShowLogs] = useState(false);
   const [muted, setMuted] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
+  const [roomRatio, setRoomRatio] = useState(1.0);
   const scrollViewRef = useRef<ScrollView>(null);
+  const pinchDistanceRef = useRef<number | null>(null);
+  const initialRoomRatioRef = useRef(1.0);
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -116,6 +119,37 @@ export function PublisherScreen({
     setEventLogs([]);
   };
 
+  const calculateDistance = (touches: any[]) => {
+    if (touches.length < 2) return 0;
+    const dx = touches[0].pageX - touches[1].pageX;
+    const dy = touches[0].pageY - touches[1].pageY;
+    return Math.sqrt(dx * dx + dy * dy);
+  };
+
+  const handleTouchStart = (e: any) => {
+    if (e.nativeEvent.touches.length === 2) {
+      pinchDistanceRef.current = calculateDistance(e.nativeEvent.touches);
+      initialRoomRatioRef.current = roomRatio;
+    } else if (e.nativeEvent.touches.length === 1) {
+      publisherRef.current?.startFocusAndMeteringCenter();
+    }
+  };
+
+  const handleTouchMove = (e: any) => {
+    if (e.nativeEvent.touches.length === 2 && pinchDistanceRef.current !== null) {
+      const currentDistance = calculateDistance(e.nativeEvent.touches);
+      const scale = currentDistance / pinchDistanceRef.current;
+      const newRatio = Math.max(1.0, Math.min(5.0, initialRoomRatioRef.current * scale));
+      setRoomRatio(newRatio);
+    }
+  };
+
+  const handleTouchEnd = (e: any) => {
+    if (e.nativeEvent.touches.length < 2) {
+      pinchDistanceRef.current = null;
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
       <View style={styles.header}>
@@ -132,7 +166,9 @@ export function PublisherScreen({
         <NodePublisher
           ref={publisherRef}
           style={styles.publisherView}
-          onTouchStart={() => publisherRef.current?.startFocusAndMeteringCenter()}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
           url={url}
           volume={muted ? 0 : 1}
           audioParam={{
@@ -157,6 +193,7 @@ export function PublisherScreen({
           torchEnable={torchOn}
           HWAccelEnable={true}
           denoiseEnable={true}
+          roomRatio={roomRatio}
           colorStyleId={NodePublisher.EFFECTOR_STYLE_ID_FAIRSKIN}
           colorStyleIntensity={colorStyleIntensity}
           smoothskinIntensity={smoothskinIntensity}
