@@ -61,6 +61,18 @@ class ExpoNodePublisherViewModule : Module() {
                 view.denoiseEnable = denoiseEnable
             }
 
+            Prop("roomRatio") { view: ExpoNodePublisherView, roomRatio: Double ->
+                view.roomRatio = roomRatio.toFloat()
+            }
+
+            Prop("volume") { view: ExpoNodePublisherView, volume: Double ->
+                view.volume = volume.toFloat()
+            }
+
+            Prop("torchEnable") { view: ExpoNodePublisherView, torchEnable: Boolean ->
+                view.torchEnable = torchEnable
+            }
+
             // Color and effect parameters
             Prop("colorStyleId") { view: ExpoNodePublisherView, colorStyleId: Int ->
                 view.colorStyleId = colorStyleId

@@ -41,6 +41,9 @@ export type NodePublisherProps = {
   videoOrientation?: number;
   frontCamera?: boolean;
   cameraFrontMirror?: boolean;
+  roomRatio?: number;
+  volume?: number;
+  torchEnable?: boolean;
   HWAccelEnable?: boolean;
   denoiseEnable?: boolean;
   colorStyleId?: number;

@@ -19,6 +19,24 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
     var HWAccelEnable = true
     var denoiseEnable = true
 
+    var roomRatio: Float? = null
+        set(value) {
+            field = value
+            value?.let { np?.setRoomRatio(it) }
+        }
+
+    var volume: Float? = null
+        set(value) {
+            field = value
+            value?.let { np?.setVolume(it) }
+        }
+
+    var torchEnable: Boolean? = null
+        set(value) {
+            field = value
+            value?.let { np?.enableTorch(it) }
+        }
+
     // Color and effect parameters
     var colorStyleId: Int? = null
         set(value) {
@@ -58,7 +76,7 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
             field = value
             value?.let {
                 np?.closeCamera()
-                np?.openCamera(if (it) 0 else 1)
+                np?.openCamera(if (it) NodePublisher.NMC_CAMERA_FRONT else NodePublisher.NMC_CAMERA_BACK)
             }
         }
 
@@ -86,17 +104,26 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
         np?.setOnNodePublisherEventListener { obj, event, msg ->
             onEventCallback(mapOf("event" to event, "msg" to msg))
         }
+        // Apply audio and video params
         applyAudioParams()
         applyVideoParams()
+
+        // Apply crypto key and HWAccelEnable
         np?.setCryptoKey(this.cryptoKey)
         np?.setHWAccelEnable(this.HWAccelEnable)
-        np?.openCamera(if (frontCamera == true) 0 else 1)
-        np?.attachView(videoView)
-
+        np?.setDenoiseEnable(this.denoiseEnable)
+        
         // Apply color and effect params if set
         colorStyleId?.let { np?.setEffectStyle(it) }
         colorStyleIntensity?.let { np?.setEffectParameter("style", it) }
         smoothskinIntensity?.let { np?.setEffectParameter("smoothskin", it) }
+
+        // Apply volume if set
+        volume?.let { np?.setVolume(it) }
+
+        // opencamera and attachview
+        np?.openCamera(if (frontCamera == true) 0 else 1)
+        np?.attachView(videoView)
     }
 
     override fun onDetachedFromWindow() {

@@ -47,6 +47,8 @@ export function PublisherScreen({
   const [smoothskinIntensity, setSmoothskinIntensity] = useState(0.0);
   const [eventLogs, setEventLogs] = useState<string[]>([]);
   const [showLogs, setShowLogs] = useState(false);
+  const [muted, setMuted] = useState(false);
+  const [torchOn, setTorchOn] = useState(false);
   const scrollViewRef = useRef<ScrollView>(null);
 
   useEffect(() => {
@@ -91,6 +93,14 @@ export function PublisherScreen({
     setSmoothskinIntensity(newState ? 1.0 : 0.0);
   };
 
+  const handleMute = () => {
+    setMuted(!muted);
+  };
+
+  const handleTorch = () => {
+    setTorchOn(!torchOn);
+  };
+
   const handleEvent = (event: { nativeEvent: NodePlayerEventCallback }) => {
     const timestamp = new Date().toLocaleTimeString('zh-CN', { hour12: false });
     const logMessage = `[${timestamp}] 事件码: ${event.nativeEvent.event}, 消息: ${event.nativeEvent.msg}`;
@@ -123,6 +133,7 @@ export function PublisherScreen({
           ref={publisherRef}
           style={styles.publisherView}
           url={url}
+          volume={muted ? 0 : 1}
           audioParam={{
             codecid: NodePublisher.NMC_CODEC_ID_AAC,
             profile: NodePublisher.NMC_PROFILE_AUTO,
@@ -142,6 +153,7 @@ export function PublisherScreen({
           keyFrameInterval={2}
           frontCamera={frontCamera}
           cameraFrontMirror={true}
+          torchEnable={torchOn}
           HWAccelEnable={true}
           denoiseEnable={true}
           colorStyleId={NodePublisher.EFFECTOR_STYLE_ID_FAIRSKIN}
@@ -155,6 +167,8 @@ export function PublisherScreen({
             <IconButton name="camera-reverse" label="翻转" onPress={handleSwitchCamera} />
             <IconButton name="color-filter" label="色彩" onPress={handleColorAdjust} active={colorStyleOn} />
             <IconButton name="sparkles" label="滤镜" onPress={handleFilterAdjust} active={smoothskinOn} />
+            <IconButton name={muted ? "volume-mute" : "volume-medium"} label="静音" onPress={handleMute} active={muted} />
+            <IconButton name={torchOn ? "sunny" : "sunny-outline"} label="补光" onPress={handleTorch} active={torchOn} />
             <View style={styles.publishBtnWrapper}>
               <IconButton
                 name={isPublishing ? "stop" : "play"}
