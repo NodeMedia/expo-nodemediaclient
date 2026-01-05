@@ -33,7 +33,7 @@ export type VideoParam = {
 }
 
 export type NodePublisherProps = {
-  ref?: NodePublisherRef;
+  ref?: React.RefObject<NodePublisherRef | null>;
   url?: string;
   cryptoKey?: string;
   audioParam?: AudioParam

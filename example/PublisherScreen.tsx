@@ -72,18 +72,18 @@ export function PublisherScreen({
       savedScale.current = scale.current;
       baseZoom.current = zoomRatio;
     }
-    
+
     if (event.nativeEvent.state === State.ACTIVE) {
       scale.current = savedScale.current * event.nativeEvent.scale;
-      
+
       // 计算新的缩放比例 (0.0 到 1.0)
       const newZoom = baseZoom.current + (event.nativeEvent.scale - 1) * 0.5;
       const clampedZoom = Math.max(0.0, Math.min(1.0, newZoom));
-      
+
       // 更新 zoomRatio 状态
       setZoomRatio(clampedZoom);
     }
-    
+
     if (event.nativeEvent.state === State.END) {
       savedScale.current = scale.current;
     }

@@ -13,7 +13,7 @@ export type NodePlayerEventCallback = {
 }
 
 export type NodePlayerProps = {
-  ref?: NodePlayerRef;
+  ref?: React.RefObject<NodePlayerRef | null>;
   url?: string;
   volume?: number;
   cryptoKey?: string;
