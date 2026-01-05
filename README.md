@@ -170,10 +170,13 @@ export default function PublisherScreen() {
 | `url` | `string` | 推流地址 (RTMP) |
 | `audioParam` | `AudioParam` | 音频编码参数 |
 | `videoParam` | `VideoParam` | 视频编码参数 |
-| `videoOrientation` | `number` | 视频方向，`NodePublisher.VIDEO_ORIENTATION_PORTRAIT` 或 `NodePublisher.VIDEO_ORIENTATION_LANDSCAPE` |
+| `videoOrientation` | `number` | 视频方向，如 `NodePublisher.VIDEO_ORIENTATION_PORTRAIT` |
 | `keyFrameInterval` | `number` | 关键帧间隔 (秒)，默认 2 |
 | `frontCamera` | `boolean` | 是否使用前置摄像头，默认 false |
 | `cameraFrontMirror` | `boolean` | 前置摄像头是否镜像，默认 true |
+| `volume` | `number` | 音量 (0.0 - 1.0) |
+| `zoomRatio` | `number` | 摄像头缩放比例 (0.0 - 1.0)|
+| `torchEnable` | `boolean` | 是否开启补光灯 |
 | `HWAccelEnable` | `boolean` | 是否启用硬件加速，默认 true |
 | `denoiseEnable` | `boolean` | 是否启用降噪，默认 true |
 | `colorStyleId` | `number` | 色彩风格ID，如 `NodePublisher.EFFECTOR_STYLE_ID_FAIRSKIN` |
