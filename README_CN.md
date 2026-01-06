@@ -1,29 +1,29 @@
 # expo-nodemediaclient
 
-## Features
-- Support for iOS and Android
-- Support for RTMP, HLS, HTTP-FLV, RTSP playback
-- Support for H.264, H.265 video encoding
-- Support for AAC, PCM audio encoding
-- Hardware acceleration support
-- Low-latency playback with cumulative latency elimination
+## 特性
+- 支持iOS与Android
+- 支持RTMP、HLS、HTTP-FLV、RTSP播放
+- 支持H.264、H.265视频编码
+- 支持AAC、PCM音频编码
+- 支持硬件加速
+- 支持低延迟播放，累积延迟消除
 
-## Prerequisites
-Your Expo project should use Continuous Native Generation [(CNG)](https://docs.expo.dev/workflow/continuous-native-generation/)
-If not, please run first:
+## 前提
+你的Expo项目应该是使用持续的原生生成 [(CNG)](https://docs.expo.dev/workflow/continuous-native-generation/)  
+如果不是请先执行
 ```bash
 npx expo prebuild
 ```
 
-## Installation
+## 安装
 
 ```bash
 npm install expo-nodemediaclient
 ```
 
-## Usage
-### Register SDK
-Android and iOS require different license codes, which need to be registered separately. Please contact [https://www.nodemedia.cn](https://www.nodemedia.cn) to obtain license codes.
+## 使用
+### 注册SDK
+android与iOS注册码不同，需要分别注册，注册码请联系[https://www.nodemedia.cn](https://www.nodemedia.cn)获取
 
 ```js
 import { NodeMediaClient } from 'expo-nodemediaclient';
@@ -38,7 +38,7 @@ if (Platform.OS === 'ios') {
 
 ```
 
-### Playback
+### 播放
 
 ```js
 import { NodePlayer, NodePlayerRef } from 'expo-nodemediaclient';
@@ -74,44 +74,44 @@ export default function App() {
 }
 ```
 
-### Component Props
+### 组件属性
 
-| Prop | Type | Description |
+| 属性 | 类型 | 说明 |
 |------|------|------|
-| `url` | `string` | Playback URL (supports RTMP, RTSP, HLS, HTTP-FLV) |
-| `bufferTime` | `number` | Buffer time in milliseconds, default 1000 |
-| `scaleMode` | `number` | Scale mode, `0`=fill, `1`=fit, `2`=stretch |
-| `volume` | `number` | Volume (0.0 - 1.0), default 1.0 |
-| `onEventCallback` | `(event) => void` | Event callback |
+| `url` | `string` | 播放地址 (支持 RTMP、RTSP、HLS、HTTP-FLV) |
+| `bufferTime` | `number` | 缓冲时间 (毫秒)，默认 1000 |
+| `scaleMode` | `number` | 缩放模式，`0`=填充，`1`=适应，`2`=拉伸 |
+| `volume` | `number` | 音量 (0.0 - 1.0)，默认 1.0 |
+| `onEventCallback` | `(event) => void` | 事件回调 |
 
-### Common Methods
+### 常用方法
 
 ```js
-// Start playback
+// 开始播放
 playerRef.current?.start(url);
 
-// Stop playback
+// 停止播放
 playerRef.current?.stop();
 ```
 
-### Event Callback
+### 事件回调
 
 ```js
 const handleEvent = (event: { nativeEvent: NodePlayerEventCallback }) => {
-  console.log('Event code:', event.nativeEvent.event);
-  console.log('Message:', event.nativeEvent.msg);
+  console.log('事件码:', event.nativeEvent.event);
+  console.log('消息:', event.nativeEvent.msg);
 };
 
 <NodePlayer
   onEventCallback={handleEvent}
-  // ...other props
+  // ...其他属性
 />
 ```
 
 
-## Streaming
+## 推流
 
-### Basic Usage
+### 基本用法
 
 ```js
 import { NodePublisher, NodePublisherRef } from 'expo-nodemediaclient';
@@ -155,7 +155,7 @@ export default function PublisherScreen() {
         }}
       />
       <Button
-        title={isPublishing ? "Stop" : "Start Streaming"}
+        title={isPublishing ? "停止" : "推流"}
         onPress={handleTogglePublish}
       />
     </SafeAreaView>
@@ -163,83 +163,83 @@ export default function PublisherScreen() {
 }
 ```
 
-### Component Props
+### 组件属性
 
-| Prop | Type | Description |
+| 属性 | 类型 | 说明 |
 |------|------|------|
-| `url` | `string` | Streaming URL (RTMP) |
-| `audioParam` | `AudioParam` | Audio encoding parameters |
-| `videoParam` | `VideoParam` | Video encoding parameters |
-| `videoOrientation` | `number` | Video orientation, e.g., `NodePublisher.VIDEO_ORIENTATION_PORTRAIT` |
-| `keyFrameInterval` | `number` | Key frame interval in seconds, default 2 |
-| `frontCamera` | `boolean` | Whether to use front camera, default false |
-| `cameraFrontMirror` | `boolean` | Whether to mirror front camera, default true |
-| `volume` | `number` | Volume (0.0 - 1.0) |
-| `zoomRatio` | `number` | Camera zoom ratio (0.0 - 1.0)|
-| `torchEnable` | `boolean` | Whether to enable torch/flashlight |
-| `HWAccelEnable` | `boolean` | Whether to enable hardware acceleration, default true |
-| `denoiseEnable` | `boolean` | Whether to enable noise reduction, default true |
-| `colorStyleId` | `number` | Color style ID, e.g., `NodePublisher.EFFECTOR_STYLE_ID_FAIRSKIN` |
-| `colorStyleIntensity` | `number` | Color intensity (0.0 - 1.0) |
-| `smoothskinIntensity` | `number` | Skin smoothing intensity (0.0 - 1.0) |
-| `onEventCallback` | `(event) => void` | Event callback |
+| `url` | `string` | 推流地址 (RTMP) |
+| `audioParam` | `AudioParam` | 音频编码参数 |
+| `videoParam` | `VideoParam` | 视频编码参数 |
+| `videoOrientation` | `number` | 视频方向，如 `NodePublisher.VIDEO_ORIENTATION_PORTRAIT` |
+| `keyFrameInterval` | `number` | 关键帧间隔 (秒)，默认 2 |
+| `frontCamera` | `boolean` | 是否使用前置摄像头，默认 false |
+| `cameraFrontMirror` | `boolean` | 前置摄像头是否镜像，默认 true |
+| `volume` | `number` | 音量 (0.0 - 1.0) |
+| `zoomRatio` | `number` | 摄像头缩放比例 (0.0 - 1.0)|
+| `torchEnable` | `boolean` | 是否开启补光灯 |
+| `HWAccelEnable` | `boolean` | 是否启用硬件加速，默认 true |
+| `denoiseEnable` | `boolean` | 是否启用降噪，默认 true |
+| `colorStyleId` | `number` | 色彩风格ID，如 `NodePublisher.EFFECTOR_STYLE_ID_FAIRSKIN` |
+| `colorStyleIntensity` | `number` | 色彩强度 (0.0 - 1.0) |
+| `smoothskinIntensity` | `number` | 磨皮强度 (0.0 - 1.0) |
+| `onEventCallback` | `(event) => void` | 事件回调 |
 
 ### AudioParam
 
-| Prop | Type | Description |
+| 属性 | 类型 | 说明 |
 |------|------|------|
-| `codecid` | `number` | Codec ID, `NodePublisher.NMC_CODEC_ID_AAC` |
-| `profile` | `number` | Codec profile, `NodePublisher.NMC_PROFILE_AUTO` |
-| `channels` | `number` | Number of channels, 1 or 2 |
-| `samplingRate` | `number` | Sampling rate, e.g., 44100 |
-| `bitrate` | `number` | Bitrate, e.g., 64000 |
+| `codecid` | `number` | 编码ID，`NodePublisher.NMC_CODEC_ID_AAC` |
+| `profile` | `number` | 编码profile，`NodePublisher.NMC_PROFILE_AUTO` |
+| `channels` | `number` | 声道数，1 或 2 |
+| `samplingRate` | `number` | 采样率，如 44100 |
+| `bitrate` | `number` | 比特率，如 64000 |
 
 ### VideoParam
 
-| Prop | Type | Description |
+| 属性 | 类型 | 说明 |
 |------|------|------|
-| `codecid` | `number` | Codec ID, `NodePublisher.NMC_CODEC_ID_H264` or `NodePublisher.NMC_CODEC_ID_H265` |
-| `profile` | `number` | Codec profile, `NodePublisher.NMC_PROFILE_AUTO` |
-| `width` | `number` | Video width |
-| `height` | `number` | Video height |
-| `fps` | `number` | Frame rate |
-| `bitrate` | `number` | Bitrate, e.g., 2000000 |
+| `codecid` | `number` | 编码ID，`NodePublisher.NMC_CODEC_ID_H264` 或 `NodePublisher.NMC_CODEC_ID_H265` |
+| `profile` | `number` | 编码profile，`NodePublisher.NMC_PROFILE_AUTO` |
+| `width` | `number` | 视频宽度 |
+| `height` | `number` | 视频高度 |
+| `fps` | `number` | 帧率 |
+| `bitrate` | `number` | 比特率，如 2000000 |
 
-### Common Methods
+### 常用方法
 
 ```js
-// Start streaming
+// 开始推流
 publisherRef.current?.start(url);
 
-// Stop streaming
+// 停止推流
 publisherRef.current?.stop();
 ```
 
-### Event Callback
+### 事件回调
 
 ```js
 const handleEvent = (event: { nativeEvent: NodePlayerEventCallback }) => {
-  console.log('Event code:', event.nativeEvent.event);
-  console.log('Message:', event.nativeEvent.msg);
+  console.log('事件码:', event.nativeEvent.event);
+  console.log('消息:', event.nativeEvent.msg);
 };
 
 <NodePublisher
   onEventCallback={handleEvent}
-  // ...other props
+  // ...其他属性
 />
 ```
 
-### Permissions
+### 权限说明
 
-Streaming functionality requires camera and microphone permissions. We recommend using `expo-camera` to request permissions.
+使用推流功能需要摄像头和麦克风权限，建议使用 `expo-camera` 来申请权限。
 
-First install the dependency:
+首先安装依赖：
 
 ```bash
 npm install expo-camera
 ```
 
-Configure the `expo-camera` plugin in `app.json`:
+在 `app.json` 中配置 `expo-camera` 插件：
 
 ```json
 {
@@ -256,8 +256,8 @@ Configure the `expo-camera` plugin in `app.json`:
     ],
     "ios": {
       "infoPlist": {
-        "NSCameraUsageDescription": "Camera access is required for live streaming",
-        "NSMicrophoneUsageDescription": "Microphone access is required for live streaming"
+        "NSCameraUsageDescription": "需要访问摄像头以进行直播推流",
+        "NSMicrophoneUsageDescription": "需要访问麦克风以进行直播推流"
       }
     },
     "android": {
@@ -271,7 +271,7 @@ Configure the `expo-camera` plugin in `app.json`:
 }
 ```
 
-Request permissions in code:
+在代码中申请权限：
 
 ```js
 import { useCameraPermissions, useMicrophonePermissions } from 'expo-camera';
