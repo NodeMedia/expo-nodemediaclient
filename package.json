@@ -1,6 +1,6 @@
 {
   "name": "expo-nodemediaclient",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Expo NodeMediaClient module",
   "main": "build/index.js",
   "types": "build/index.d.ts",
