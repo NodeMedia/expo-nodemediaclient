@@ -33,13 +33,13 @@ if (useManagedAndroidSdkVersions) {
 android {
   namespace "expo.modules.nodemediaclient"
   defaultConfig {
-    versionCode 204
-    versionName "0.2.4"
+    versionCode 205
+    versionName "0.2.5"
   }
   lintOptions {
     abortOnError false
   }
   dependencies {
-    implementation 'com.github.NodeMedia:NodeMediaClient-Android:4.1.2'
+    implementation 'com.github.NodeMedia:NodeMediaClient-Android:4.1.3'
   }
 }
