@@ -4,9 +4,11 @@
 - Support for iOS and Android
 - Support for RTMP, HLS, HTTP-FLV, RTSP playback
 - Support for H.264, H.265 video encoding
-- Support for AAC, PCM audio encoding
+- Support for AAC, OPUS, PCM audio encoding
 - Hardware acceleration support
 - Low-latency playback with cumulative latency elimination
+- Automatic reconnection
+- Built-in camera filters
 
 ## Prerequisites
 Your Expo project should use Continuous Native Generation [(CNG)](https://docs.expo.dev/workflow/continuous-native-generation/)
