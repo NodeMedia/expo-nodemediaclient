@@ -5,6 +5,7 @@
 ## Features
 - Support for iOS and Android
 - Support for RTMP, HLS, HTTP-FLV, RTSP playback
+- Support for RTMP Live Streaming publish
 - Support for H.264, H.265 video encoding
 - Support for AAC, OPUS, PCM audio encoding
 - Hardware acceleration support
