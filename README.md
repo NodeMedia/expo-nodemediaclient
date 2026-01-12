@@ -1,4 +1,6 @@
 # expo-nodemediaclient
+[![npm](https://img.shields.io/npm/v/expo-nodemediaclient.svg)](https://www.npmjs.com/package/expo-nodemediaclient)
+[![npm](https://img.shields.io/npm/dm/expo-nodemediaclient.svg)](https://www.npmjs.com/package/expo-nodemediaclient)  
 
 ## Features
 - Support for iOS and Android
