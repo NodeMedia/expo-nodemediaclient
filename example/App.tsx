@@ -10,10 +10,11 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { PlayerScreen } from './PlayerScreen';
 import { PublisherScreen } from './PublisherScreen';
+import { PublisherLandscapeScreen } from './PublisherLandscapeScreen';
 import { useCameraPermissions, useMicrophonePermissions } from 'expo-camera';
 import { NodeMediaClient } from 'expo-nodemediaclient';
 
-type Screen = 'home' | 'player' | 'publisher';
+type Screen = 'home' | 'player' | 'publisher' | 'publisherLanscape';
 
 
 if (Platform.OS === 'android') {
@@ -37,6 +38,10 @@ export default function App() {
 
   if (currentScreen === 'publisher') {
     return <PublisherScreen onBack={() => setCurrentScreen('home')} hasPermission={cameraPermission?.granted == true && microphonePermission?.granted == true} />;
+  }
+
+  if (currentScreen === 'publisherLanscape') {
+    return <PublisherLandscapeScreen onBack={() => setCurrentScreen('home')} hasPermission={cameraPermission?.granted == true && microphonePermission?.granted == true} />;
   }
 
   return <HomeScreen onNavigate={(screen) => setCurrentScreen(screen)} />;
@@ -71,6 +76,13 @@ function HomeScreen({ onNavigate }: { onNavigate: (screen: Screen) => void }) {
             title="直播推流"
             description="支持摄像头推流，可配置视频参数，轻松实现直播功能"
             onPress={() => onNavigate('publisher')}
+          />
+
+          <FeatureCard
+            icon="📹"
+            title="横屏直播推流"
+            description="支持摄像头推流，可配置视频参数，轻松实现直播功能"
+            onPress={() => onNavigate('publisherLanscape')}
           />
         </View>
       </ScrollView>

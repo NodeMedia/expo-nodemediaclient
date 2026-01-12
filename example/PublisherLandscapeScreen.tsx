@@ -31,7 +31,7 @@ function IconButton({ name, label, onPress, active, style }: IconBtnProps) {
   );
 }
 
-export function PublisherScreen({
+export function PublisherLandscapeScreen({
   onBack,
   hasPermission,
 }: {
@@ -66,6 +66,32 @@ export function PublisherScreen({
     });
     return () => backHandler.remove();
   }, [onBack]);
+
+  // 进入页面时设置为横屏，退出时恢复
+  useEffect(() => {
+    // 设置为横屏
+    const setLandscapeOrientation = async () => {
+      try {
+        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+      } catch (error) {
+        console.warn('Failed to set landscape orientation:', error);
+      }
+    };
+
+    setLandscapeOrientation();
+
+    // 清理函数：恢复屏幕方向
+    return () => {
+      const restoreOrientation = async () => {
+        try {
+          await ScreenOrientation.unlockAsync();
+        } catch (error) {
+          console.warn('Failed to restore orientation:', error);
+        }
+      };
+      restoreOrientation();
+    };
+  }, []);
 
   // 双指缩放手势处理器
   const onPinchGestureEvent = (event: any) => {
@@ -181,12 +207,12 @@ export function PublisherScreen({
                 videoParam={{
                   codecid: NodePublisher.NMC_CODEC_ID_H264,
                   profile: NodePublisher.NMC_PROFILE_AUTO,
-                  width: 720,
-                  height: 120,
+                  width: 1280,
+                  height: 720,
                   fps: 30,
                   bitrate: 2000_000,
                 }}
-                videoOrientation={NodePublisher.VIDEO_ORIENTATION_PORTRAIT}
+                videoOrientation={NodePublisher.VIDEO_ORIENTATION_LANDSCAPE_RIGHT}
                 keyFrameInterval={2}
                 frontCamera={frontCamera}
                 cameraFrontMirror={true}

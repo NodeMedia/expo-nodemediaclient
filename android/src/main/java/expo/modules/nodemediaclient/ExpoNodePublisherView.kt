@@ -82,7 +82,7 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
 
     // Other parameters
     var keyFrameInterval = 2
-    var videoOrientation = 1
+    var videoOrientation = 0
 
     var cameraFrontMirror: Boolean? = null
         set(value) {
@@ -107,6 +107,8 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
         // Apply audio and video params
         applyAudioParams()
         applyVideoParams()
+        np?.setVideoOrientation(videoOrientation)
+        np?.setKeyFrameInterval(keyFrameInterval)
 
         // Apply crypto key and HWAccelEnable
         np?.setCryptoKey(this.cryptoKey)
@@ -124,8 +126,6 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
         // opencamera and attachview
         np?.openCamera(if (frontCamera == true) 0 else 1)
         np?.attachView(videoView)
-
-        np?.setZoomRatio(zoomRatio ?: 1f)
     }
 
     override fun onDetachedFromWindow() {

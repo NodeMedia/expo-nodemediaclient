@@ -1,5 +1,6 @@
 package expo.modules.nodemediaclient
 
+import cn.nodemedia.NodePublisher
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 
@@ -46,7 +47,12 @@ class ExpoNodePublisherViewModule : Module() {
             }
 
             Prop("videoOrientation") { view: ExpoNodePublisherView, videoOrientation: Int ->
-                view.videoOrientation = videoOrientation
+                view.videoOrientation = NodePublisher.VIDEO_ORIENTATION_PORTRAIT
+                when (videoOrientation) {
+                    // Compatible with iOS for constant values
+                    3 -> view.videoOrientation = NodePublisher.VIDEO_ORIENTATION_LANDSCAPE_RIGHT
+                    4 -> view.videoOrientation = NodePublisher.VIDEO_ORIENTATION_LANDSCAPE_LEFT
+                }
             }
 
             Prop("frontCamera") { view: ExpoNodePublisherView, frontCamera: Boolean ->
