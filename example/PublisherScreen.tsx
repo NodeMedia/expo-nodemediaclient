@@ -182,7 +182,7 @@ export function PublisherScreen({
                   codecid: NodePublisher.NMC_CODEC_ID_H264,
                   profile: NodePublisher.NMC_PROFILE_AUTO,
                   width: 720,
-                  height: 120,
+                  height: 1280,
                   fps: 30,
                   bitrate: 2000_000,
                 }}
