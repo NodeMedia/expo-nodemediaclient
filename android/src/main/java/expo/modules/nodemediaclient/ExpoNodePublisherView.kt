@@ -100,7 +100,7 @@ class ExpoNodePublisherView(context: Context, appContext: AppContext) :
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        np = NodePublisher(context, LICENSE_KEY)
+        np = NodePublisher(appContext.currentActivity, LICENSE_KEY)
         np?.setOnNodePublisherEventListener { obj, event, msg ->
             onEventCallback(mapOf("event" to event, "msg" to msg))
         }
