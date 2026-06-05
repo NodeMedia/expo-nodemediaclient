@@ -13,6 +13,11 @@
 - Automatic reconnection
 - Built-in camera filters
 
+## create expo project
+```bash
+npx create-expo-app@latest
+```
+
 ## Prerequisites
 Your Expo project should use Continuous Native Generation [(CNG)](https://docs.expo.dev/workflow/continuous-native-generation/)
 If not, please run first:
